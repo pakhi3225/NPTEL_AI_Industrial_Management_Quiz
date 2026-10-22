@@ -19,10 +19,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: NPTEL_AI_Industrial_Management_Quiz
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -31,7 +27,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: NPTEL_AI_Industrial_Management_Quiz/package-lock.json
+          cache: npm
 
       - name: Install dependencies
         run: npm ci
@@ -42,7 +38,7 @@ jobs:
       - name: Upload build
         uses: actions/upload-pages-artifact@v3
         with:
-          path: NPTEL_AI_Industrial_Management_Quiz/dist
+          path: dist
 
   deploy:
     needs: build
